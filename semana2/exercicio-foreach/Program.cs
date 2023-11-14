@@ -1,4 +1,4 @@
-﻿/*#region foreach
+﻿#region foreach
 string[] colecao = {"Item1", "Item2", "Item3", "Item4"};
 
 foreach (string item in colecao) {
@@ -22,7 +22,7 @@ for (int i = 0; i <= 30; i++) {
     }
 }
 
-#endregion */
+#endregion
 
 #region fibonacci
 
