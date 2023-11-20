@@ -1,4 +1,7 @@
-﻿List<string> tasks = new List<string>();
+﻿using System.Globalization;
+CultureInfo.CurrentCulture = CultureInfo.CreateSpecificCulture("pt-BR");
+
+List<string> tasks = new List<string>();
 List<string> completedTasks = new List<string>();
 List<string> pendingTasks = new List<string>();
 
@@ -135,32 +138,39 @@ while (true)
             Console.WriteLine($"Tarefas concluídas: {completedTasks.Count} \n");
             Console.WriteLine($"Tarefas pendentes: {pendingTasks.Count} \n");
 
-            DateTime olderDate = DateTime.Parse(tasks[0].Substring(11, 19));
-            DateTime newestDate = DateTime.Parse(tasks[0].Substring(11, 19));
-            string olderTask = tasks[0];
-            string newestTask = tasks[0];
-
-            foreach (string task in tasks)
+            if (tasks.Count > 0)
             {
-                if (olderDate > DateTime.Parse(task.Substring(11, 19)))
+                DateTime olderDate = DateTime.Parse(tasks[0].Substring(11, 19));
+                DateTime newestDate = DateTime.Parse(tasks[0].Substring(11, 19));
+                string olderTask = tasks[0];
+                string newestTask = tasks[0];
+
+                foreach (string task in tasks)
                 {
-                    olderDate = DateTime.Parse(task.Substring(11, 19));
-                    olderTask = task;
+                    if (olderDate > DateTime.Parse(task.Substring(11, 19)))
+                    {
+                        olderDate = DateTime.Parse(task.Substring(11, 19));
+                        olderTask = task;
+                    }
                 }
+
+                Console.WriteLine($"Tarefa mais antiga: {olderTask}\n");
+
+                foreach (string task in tasks)
+                {
+                    if (newestDate < DateTime.Parse(task.Substring(11, 19)))
+                    {
+                        newestDate = DateTime.Parse(task.Substring(11, 19));
+                        newestTask = task;
+                    }
+                }
+
+                Console.WriteLine($"Tarefa mais nova: {newestTask}\n");
             }
-
-            Console.WriteLine($"Tarefa mais antiga: {olderTask}\n");
-
-            foreach (string task in tasks)
+            else
             {
-                if (newestDate < DateTime.Parse(task.Substring(11, 19)))
-                {
-                    newestDate = DateTime.Parse(task.Substring(11, 19));
-                    newestTask = task;
-                }
+                Console.WriteLine("Sem tarefas!");
             }
-
-            Console.WriteLine($"Tarefa mais nova: {newestTask}\n");
             break;
         default:
             Console.WriteLine("Opção inválida!");
