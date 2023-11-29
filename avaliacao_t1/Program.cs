@@ -3,18 +3,55 @@ using System.Globalization;
 
 CultureInfo.CurrentCulture = CultureInfo.CreateSpecificCulture("pt-BR");
 
-List<string> minhaLista = new List<string> { "Febre", "Tosse" };
 Doctor doctor1 = new Doctor("Dr. João", new DateTime(1980, 5, 15), "12345678901", "CRM12345");
 Doctor doctor2 = new Doctor("Dra. Maria", new DateTime(1975, 8, 22), "23456789012", "CRM67890");
+Doctor doctor3 = new Doctor("Dr. Carlos", new DateTime(1990, 3, 10), "45678901234", "CRM54321");
 List<Doctor> doctorList = new List<Doctor>();
 doctorList.Add(doctor1);
 doctorList.Add(doctor2);
-Patient patient1 = new Patient("Valber", new DateTime(1996, 6, 19), "07109001555", "masculino", minhaLista);
-Console.WriteLine($"{doctor1.Age}");
+doctorList.Add(doctor3);
 
-var report2 = doctorList.Where(doctor => doctor.Age >= 40 && doctor.Age <= 30);
+List<string> sintomas1 = new List<string> { "Febre", "Tosse" };
+List<string> sintomas2 = new List<string> { "Coceira", "pigarro" };
+List<string> sintomas3 = new List<string> { "Dor de cabeça", "incomodo nas costas" };
+
+Patient patient1 = new Patient("Valber", new DateTime(1996, 6, 19), "07109001555", "masculino", sintomas1);
+Patient patient2 = new Patient("Joao", new DateTime(1999, 7, 22), "12345678912", "masculino", sintomas3);
+Patient patient3 = new Patient("Zaca", new DateTime(1997, 6, 19), "98765432121", "feminino", sintomas2);
+
+List<Patient> patientList = new List<Patient>();
+patientList.Add(patient1);
+patientList.Add(patient2);
+patientList.Add(patient3);
+
+var report1 = doctorList.Where(doctor => doctor.Age >= 30 && doctor.Age <= 45);
+var report2 = patientList.Where(patient => patient.Age >= 25 && patient.Age <= 30);
+
+
+Console.WriteLine($"Relatório 1: Médicos com idade entre {30} e {45} anos");
+
+foreach (var doctor in report1)
+{
+    Console.WriteLine($"Nome do médico: {doctor.Name} - Idade: {doctor.Age} - CPF: {doctor.Cpf} - CRM: {doctor.Crm}");
+}
+
+Console.WriteLine($"Relatório 2: Pacientes com idade entre {25} e {30} anos");
+
+foreach (var patient in report2)
+{
+    Console.WriteLine($"Nome do médico: {patient.Name} - Idade: {patient.Age} - CPF: {patient.Cpf}");
+}
+
+/* Console.WriteLine($"Relatório 1: Médicos com idade entre {30} e {45} anos");
 
 foreach (var doctor in report2)
 {
     Console.WriteLine($"Nome do médico: {doctor.Name} - Idade: {doctor.Age} - CPF: {doctor.Cpf} - CRM: {doctor.Crm}");
 }
+
+Console.WriteLine($"Relatório 1: Médicos com idade entre {30} e {45} anos");
+
+foreach (var doctor in report2)
+{
+    Console.WriteLine($"Nome do médico: {doctor.Name} - Idade: {doctor.Age} - CPF: {doctor.Cpf} - CRM: {doctor.Crm}");
+} */
