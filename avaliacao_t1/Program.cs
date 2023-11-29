@@ -32,6 +32,8 @@ var report2 = patientList.Where(patient => patient.Age >= 25 && patient.Age <= 3
 var report3 = patientList.Where(patient => patient.Gender == "masculino" );
 var report4 = patientList.OrderBy(patient => patient.Name );
 var report5 = patientList.Where(patient => patient.Symptoms.Count > 0);
+var report6 = patientList.Where(patient => patient.BirthDate.Month == 6);
+var report7 = doctorList.Where(doctor => doctor.BirthDate.Month == 6);
 
 Console.WriteLine($"Relatório 1: Médicos com idade entre {30} e {45} anos");
 
@@ -79,4 +81,16 @@ foreach (var patient in report5)
     Console.WriteLine($"Sintomas");
     patient.Symptoms.ForEach(s => Console.WriteLine(s));
     Console.WriteLine($"\n");
+}
+
+Console.WriteLine($"Relatório 6: Pacientes e médico que fazem aniversário em junho");
+
+foreach (var patient in report6)
+{
+    Console.WriteLine($"Nome do paciente: {patient.Name} - Idade: {patient.Age} - CPF: {patient.Cpf}");
+}
+
+foreach (var doctor in report7)
+{
+    Console.WriteLine($"Nome do médico: {doctor.Name} - Idade: {doctor.Age} - CPF: {doctor.Cpf} - CRM: {doctor.Crm}");
 }
