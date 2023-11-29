@@ -40,6 +40,7 @@ Console.WriteLine($"Relatório 1: Médicos com idade entre {30} e {45} anos");
 foreach (var doctor in report1)
 {
     Console.WriteLine($"Nome do médico: {doctor.Name} - Idade: {doctor.Age} - CPF: {doctor.Cpf} - CRM: {doctor.Crm}");
+    Console.WriteLine($"\n");
 }
 
 Console.WriteLine($"Relatório 2: Pacientes com idade entre {25} e {30} anos");
